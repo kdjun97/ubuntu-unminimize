@@ -1,8 +1,9 @@
 FROM ubuntu:18.04
 RUN set -xe \
-    && apt-get update \
-    && apt-get install -y apt-utils tzdata locales
-ENV TZ=Europe/Moscow
+    && apt -qq update \
+    && apt -y -qq upgrade \
+    && apt -y -qq install -y apt-utils tzdata locales
+ENV TZ=Asia/Seoul
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
      && echo $TZ > /etc/timezone
 RUN set -xe &&\
@@ -23,14 +24,14 @@ RUN yes | unminimize
 
 
 RUN set -xe \
-    && apt-get install -y vim perl wget tar man sudo adduser netstat-nat net-tools curl w3m  \
-    && useradd -m -p "\$6\$AyOAQ1vh\$CcIXBW4cJopgUVKsTcxlGplUZ382K4yIxIAHhqmEewzJdc6x0MmbSDDQJ1DR.4eueGlYTf2ZbUl9oAQaUQEoi1" -s /bin/bash user \
-    && usermod -aG sudo user \
-    && echo "user ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/user \
-    && chmod 0440 /etc/sudoers.d/user 
+    && apt-get install -y vim perl wget tar man sudo adduser netstat-nat net-tools curl w3m git \
+    && useradd -m -p "\$6\$AyOAQ1vh\$CcIXBW4cJopgUVKsTcxlGplUZ382K4yIxIAHhqmEewzJdc6x0MmbSDDQJ1DR.4eueGlYTf2ZbUl9oAQaUQEoi1" -s /bin/bash kdjun97 \
+    && usermod -aG sudo kdjun97 \
+    && echo "kdjun97 ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/kdjun97 \
+    && chmod 0440 /etc/sudoers.d/kdjun97 
 
-USER user:user
+USER kdjun97:kdjun97
 
-WORKDIR /home/user
+WORKDIR /home/kdjun97
 
 CMD [ "/bin/bash" ]
