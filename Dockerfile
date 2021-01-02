@@ -24,7 +24,7 @@ RUN yes | unminimize
 
 
 RUN set -xe \
-    && apt-get install -y vim perl wget tar man sudo adduser netstat-nat net-tools curl w3m git \
+    && apt -y install vim perl wget tar man sudo adduser netstat-nat net-tools curl w3m git build-essential make gcc g++ \
     && useradd -m -p "\$6\$AyOAQ1vh\$CcIXBW4cJopgUVKsTcxlGplUZ382K4yIxIAHhqmEewzJdc6x0MmbSDDQJ1DR.4eueGlYTf2ZbUl9oAQaUQEoi1" -s /bin/bash kdjun97 \
     && usermod -aG sudo kdjun97 \
     && echo "kdjun97 ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/kdjun97 \
